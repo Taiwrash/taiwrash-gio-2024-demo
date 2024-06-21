@@ -23,8 +23,8 @@ def load_models():
     Returns:
         Tuple: A tuple containing the text model and multimodal model.
     """
-    text_model_pro = GenerativeModel("gemini-1.0-pro")
-    multimodal_model_pro = GenerativeModel("gemini-1.0-pro-vision")
+    text_model_pro = GenerativeModel("gemini-pro")
+    multimodal_model_pro = GenerativeModel("gemini-pro-vision")
     return text_model_pro, multimodal_model_pro
 
 
@@ -110,14 +110,12 @@ with tab1:
             "Love",
             "Adventure",
             "Mystery",
-            "Horror",
             "Comedy",
             "Sci-Fi",
             "Fantasy",
-            "Thriller",
         ],
         key="story_premise",
-        default=["Love", "Adventure"],
+        default=["Love", "Sci-Fi"],
     )
     creative_control = st.radio(
         "Select the creativity level: \n\n",
