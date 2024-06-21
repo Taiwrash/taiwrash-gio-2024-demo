@@ -2,34 +2,39 @@
 
 |           |                                                |
 | --------- | ---------------------------------------------- |
-| Author(s)       | GitHub Profile                                         |
-|                 |                             |
-| Lavi Nigam      | [GitHub](https://github.com/lavinigam-gcp)    |
-| Rasheed Mudasiru| [GitHub](https://github.com/Taiwrash)         |
+| Author(s)       |                                        |
+| 1. [Lavi Nigam](https://github.com/lavinigam-gcp)      |     |
+| 2. [Rasheed Mudasiru](https://github.com/Taiwrash) |         |
 
-This application demonstrates a Cloud Run application that uses the [Streamlit](https://streamlit.io/) framework with a demo on continous deeployment with GitHub.
+This application demonstrates a Cloud Run application that uses the [Streamlit](https://streamlit.io/) framework with a demo on continous deployment with GitHub.
 
 Sample screenshots and video demos of the application are shown below:
 
 ## Application screenshots
-#Ok
 
 <img src="https://storage.googleapis.com/github-repo/img/gemini/sample-apps/gemini-streamlit-cloudrun/assets/gemini_pro_text.png" width="50%"/>
 
 ## PART 1: Run the Application locally (on Cloud Shell)
 
-> NOTE: **Before you move forward, ensure that you have followed the instructions in [SETUP.md](../SETUP.md).**
-> Additionally, ensure that you have cloned this repository and you are currently in the `gemini-streamlit-cloudrun` folder. This should be your active working directory for the rest of the commands.
+> NOTE: **Before you move forward, ensure that you have followed the instructions in [SETUP.md](/SETUP.md).**
+> Additionally, ensure that you have cloned this repository and you are currently in the `taiwrash-gio-2024-demo` folder. This should be your active working directory for the rest of the commands.
+
+- Use this Command
+```bash
+git clone https://github.com/Taiwrash/taiwrash-gio-2024-demo.git \
+   && cd taiwrash-gio-2024-demo/
+   ```
 
 To run the Streamlit Application locally (on cloud shell), we need to perform the following steps:
+
 
 1. Setup the Python virtual environment and install the dependencies:
 
    In Cloud Shell, execute the following commands:
 
    ```bash
-   python3 -m venv gemini-streamlit
-   source gemini-streamlit/bin/activate
+   python3 -m venv gemini-io-ilorin
+   source gemini-io-ilorin/bin/activate
    pip install -r requirements.txt
    ```
 
@@ -45,8 +50,8 @@ To run the Streamlit Application locally (on cloud shell), we need to perform th
    In Cloud Shell, execute the following commands:
 
    ```bash
-   export GCP_PROJECT='<Your GCP Project Id>'  # Change this
-   export GCP_REGION='us-central1'             # If you change this, make sure the region is supported.
+   GCP_PROJECT='Project ID'
+   GCP_REGION='Region'
    ```
 
 3. To run the application locally, execute the following command:
@@ -63,12 +68,12 @@ To run the Streamlit Application locally (on cloud shell), we need to perform th
 
 The application will startup and you will be provided a URL to the application. Use Cloud Shell's [web preview](https://cloud.google.com/shell/docs/using-web-preview) function to launch the preview page. You may also visit that in the browser to view the application. Choose the functionality that you would like to check out and the application will prompt the Vertex AI Gemini API and display the responses.
 
-## Build and Deploy the Application to Cloud Run
+## PART 2: Build and Deploy the Application to Cloud Run
 
-> NOTE: **Before you move forward, ensure that you have followed the instructions in [SETUP.md](../SETUP.md).**
-> Additionally, ensure that you have cloned this repository and you are currently in the `gemini-streamlit-cloudrun` folder. This should be your active working directory for the rest of the commands.
+> NOTE: **Before you move forward, ensure that you have followed the instructions in [SETUP.md](/SETUP.md).**
+> Additionally, ensure that you have cloned this repository and you are currently in the `taiwrash-gio-2024-demo` folder. This should be your active working directory for the rest of the commands.
 
-To deploy the Streamlit Application in [Cloud Run](https://cloud.google.com/run/docs/quickstarts/deploy-container), we need to perform the following steps:
+To deploy the GEMINI API, Streamlit Application in [Cloud Run](https://cloud.google.com/run/docs/quickstarts/deploy-container), we need to perform the following steps:
 
 1. Your Cloud Run app requires access to two environment variables:
 
@@ -91,12 +96,9 @@ To deploy the Streamlit Application in [Cloud Run](https://cloud.google.com/run/
    In Cloud Shell, execute the following commands:
 
    ```bash
-   export AR_REPO='<REPLACE_WITH_YOUR_AR_REPO_NAME>'  # Change this
-   export SERVICE_NAME='gemini-streamlit-app' # This is the name of our Application and Cloud Run service. Change it if you'd like.
-
-   #make sure you are in the active directory for 'gemini-streamlit-cloudrun'
+   AR_REPO='gemini-repo'
+   SERVICE_NAME='gemini-io-ilorin' 
    gcloud artifacts repositories create "$AR_REPO" --location="$GCP_REGION" --repository-format=Docker
-   gcloud auth configure-docker "$GCP_REGION-docker.pkg.dev"
    gcloud builds submit --tag "$GCP_REGION-docker.pkg.dev/$GCP_PROJECT/$AR_REPO/$SERVICE_NAME"
    ```
 
@@ -105,16 +107,79 @@ To deploy the Streamlit Application in [Cloud Run](https://cloud.google.com/run/
    In Cloud Shell, execute the following command:
 
    ```bash
-   gcloud run deploy "$SERVICE_NAME" \
-     --port=8080 \
-     --image="$GCP_REGION-docker.pkg.dev/$GCP_PROJECT/$AR_REPO/$SERVICE_NAME" \
-     --allow-unauthenticated \
-     --region=$GCP_REGION \
-     --platform=managed  \
-     --project=$GCP_PROJECT \
-     --set-env-vars=GCP_PROJECT=$GCP_PROJECT,GCP_REGION=$GCP_REGION
+      gcloud run deploy "$SERVICE_NAME" \
+      --port=8080 \
+      --image="$GCP_REGION-docker.pkg.dev/$GCP_PROJECT/$AR_REPO/$SERVICE_NAME" \
+      --allow-unauthenticated \
+      --region=$GCP_REGION \
+      --platform=managed  \
+      --project=$GCP_PROJECT \
+      --set-env-vars=GCP_PROJECT=$GCP_PROJECT,GCP_REGION=$GCP_REGION
    ```
 
 On successful deployment, you will be provided a URL to the Cloud Run service. You can visit that in the browser to view the Cloud Run application that you just deployed. Choose the functionality that you would like to check out and the application will prompt the Vertex AI Gemini API and display the responses.
 
-Congratulations!
+Congratulations! You just complete part two of the demo. You have successfully deployed the Gemini API app application to Cloud Run.
+
+![Congrats, now on cloudrun](image.png)
+
+## PART 3: Continuous Deployment with GitHub Actions
+
+#### Deploy from the Repository
+
+1. **Navigate to Cloud Run**:
+   - Open the Google Cloud Console and go to Cloud Run.
+
+2. **Create a New Service**:
+   - Click `Create service` to open the Create service form.
+
+3. **Set Up Continuous Deployment**:
+   - In the form, select `Continuously deploy from a repository`.
+   - Click `Set up Cloud Build`.
+
+4. **Configure the Repository**:
+   - In the right panel, under `Repository`, select your newly created repository.
+   - If you haven't authenticated yet, use the `authenticate` link under the Repository Provider field to log in.
+
+5. **Confirm Repository Interaction**:
+   - Check the confirmation agreement about GitHub and Google Cloud interactivity.
+   - Click `Next`.
+
+6. **Select Build Type**:
+   - Under `Build Type`, select `Docker` and fill the inputs accordingly.
+   - Click `Save`.
+
+7. **Complete the Service Form**:
+   - Confirm the name of the service, which will be auto-populated with the repository name.
+   - In the `Region` dropdown menu, select the region for your service.
+   - Under `Authentication`, select `Allow unauthenticated invocations`.
+
+8. **Deploy the Service**:
+   - Click `Create` to deploy the sample repository to Cloud Run.
+   - Wait for the deployment to complete.
+
+9. **Run the Deployed Container**:
+   - Click the displayed URL link to run the deployed container.
+
+#### Update the Service
+
+1. **Make Changes to the Code**:
+   - Push a commit to the main branch of your repository.
+
+2. **Refresh the Cloud Run Service**:
+   - Refresh the Cloud Run service page to see the status of the update.
+
+#### Congratulations!
+
+You have successfully deployed your application to Cloud Run from a git repository. Cloud Run automatically scales your container to handle incoming requests and scales down when demand decreases. You only pay for the CPU, Memory, and Networking resources consumed during request handling.
+
+![Finally, you did it](image-1.png)
+
+### Conclusion and Resource
+
+1. [Deploy a Streamlit App Integrated with Gemini Pro on Cloud Run](https://www.cloudskillsboost.google/catalog_lab/31183)
+
+
+> NOTE: This is an improvement on the project [Lavi Nigam](https://github.com/lavinigam-gcp)
+>
+> Like this work by clicking on the [STAR](https://github.com/Taiwrash/taiwrash-gio-2024-demo) icon at the top right corner of the page. Also, you can follow us on X(twitter) [Rasheed](https://x.xom/taiwrash) to get updates on our latest projects.
