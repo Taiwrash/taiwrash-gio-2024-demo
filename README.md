@@ -9,6 +9,7 @@ This application demonstrates a Cloud Run application that uses the [Streamlit](
 Sample screenshots and video demos of the application are shown below:
 
 ## Application screenshots
+#Ok
 
 <img src="https://storage.googleapis.com/github-repo/img/gemini/sample-apps/gemini-streamlit-cloudrun/assets/gemini_pro_text.png" width="50%"/>
 
