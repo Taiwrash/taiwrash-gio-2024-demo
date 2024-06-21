@@ -1,10 +1,13 @@
-# Cloud Run application utilizing Streamlit Framework that demonstrates working with Vertex AI Gemini API
+# Building a Scalable Cloud Run Application with Continuous Deployment: Integrating Streamlit Framework and Vertex AI Gemini API
 
 |           |                                                |
 | --------- | ---------------------------------------------- |
-| Author(s) | [Lavi Nigam](https://github.com/lavinigam-gcp) |
+| Author(s)       | GitHub Profile                                         |
+|                 |                             |
+| Lavi Nigam      | [GitHub](https://github.com/lavinigam-gcp)    |
+| Rasheed Mudasiru| [GitHub](https://github.com/Taiwrash)         |
 
-This application demonstrates a Cloud Run application that uses the [Streamlit](https://streamlit.io/) framework.
+This application demonstrates a Cloud Run application that uses the [Streamlit](https://streamlit.io/) framework with a demo on continous deeployment with GitHub.
 
 Sample screenshots and video demos of the application are shown below:
 
@@ -13,7 +16,7 @@ Sample screenshots and video demos of the application are shown below:
 
 <img src="https://storage.googleapis.com/github-repo/img/gemini/sample-apps/gemini-streamlit-cloudrun/assets/gemini_pro_text.png" width="50%"/>
 
-## Run the Application locally (on Cloud Shell)
+## PART 1: Run the Application locally (on Cloud Shell)
 
 > NOTE: **Before you move forward, ensure that you have followed the instructions in [SETUP.md](../SETUP.md).**
 > Additionally, ensure that you have cloned this repository and you are currently in the `gemini-streamlit-cloudrun` folder. This should be your active working directory for the rest of the commands.
