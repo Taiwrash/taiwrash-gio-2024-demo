@@ -1,5 +1,7 @@
 # Building a Scalable Cloud Run Application with Continuous Deployment: Integrating Streamlit Framework and Vertex AI Gemini API
 
+> [See Intro Slides Here](https://docs.google.com/presentation/d/14YkeVYwnRQF2qcXfwlEBbRiWVDBkBHqCklV5lUcQibE/edit?usp=sharing)
+
 |           |                                                |
 | --------- | ---------------------------------------------- |
 | Author(s)       |                                        |
@@ -50,8 +52,8 @@ To run the Streamlit Application locally (on cloud shell), we need to perform th
    In Cloud Shell, execute the following commands:
 
    ```bash
-   GCP_PROJECT='Project ID'
-   GCP_REGION='Region'
+   GCP_PROJECT=<Project ID>
+   GCP_REGION=<Region>
    ```
 
 3. To run the application locally, execute the following command:
@@ -93,6 +95,8 @@ To deploy the GEMINI API, Streamlit Application in [Cloud Run](https://cloud.goo
 
 2. Now you can build the Docker image for the application and push it to Artifact Registry. To do this, you will need one environment variable set that will point to the Artifact Registry name. Included in the script below is a command that will create this Artifact Registry repository for you.
 
+![image](https://github.com/Taiwrash/taiwrash-gio-2024-demo/assets/49725691/2a8ce747-aba1-4ba8-8803-420db87a609e)
+
    In Cloud Shell, execute the following commands:
 
    ```bash
@@ -121,7 +125,8 @@ On successful deployment, you will be provided a URL to the Cloud Run service. Y
 
 Congratulations! You just complete part two of the demo. You have successfully deployed the Gemini API app application to Cloud Run.
 
-![Congrats, now on cloudrun](image.png)
+![Congrats, now on cloudrun](https://github.com/Taiwrash/taiwrash-gio-2024-demo/assets/49725691/496f6be0-d22e-49c2-b9cd-e3a728959daa)
+
 
 ## PART 3: Continuous Deployment with GitHub Actions
 
@@ -173,7 +178,8 @@ Congratulations! You just complete part two of the demo. You have successfully d
 
 You have successfully deployed your application to Cloud Run from a git repository. Cloud Run automatically scales your container to handle incoming requests and scales down when demand decreases. You only pay for the CPU, Memory, and Networking resources consumed during request handling.
 
-![Finally, you did it](image-1.png)
+![Finally, you did it](https://github.com/Taiwrash/taiwrash-gio-2024-demo/assets/49725691/82356b92-c041-4fef-b281-a1e3f50500e3)
+
 
 ### Conclusion and Resource
 
@@ -183,3 +189,4 @@ You have successfully deployed your application to Cloud Run from a git reposito
 > NOTE: This is an improvement on the project [Lavi Nigam](https://github.com/lavinigam-gcp)
 >
 > Like this work by clicking on the [STAR](https://github.com/Taiwrash/taiwrash-gio-2024-demo) icon at the top right corner of the page. Also, you can follow us on X(twitter) [Rasheed](https://x.xom/taiwrash) to get updates on our latest projects.
+> Subscribe to my [Youtube Channel](https://www.youtube.com/@Taiwrash/streams)
